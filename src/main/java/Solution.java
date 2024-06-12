@@ -1,32 +1,22 @@
+import java.util.Arrays;
+
 public class Solution {
     public void sortColors(int[] nums) {
-        int count0 = 0;
-        int count1 = 0;
-        int count2 = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if(nums[i] == 0){
-                count0++;
-            }else if(nums[i] == 1){
-                count1++;
-            }else {
-                count2++;
+        int n = nums.length;
+        int i = 0; // 0 insertion index
+        int j = n - 1; // 2 insertion index
+        int k = 0;
+        while (k <= j) {
+            if(nums[k] == 0){
+                nums[k] = nums[i];
+                nums[i++] = 0;
             }
-        }
-        int i = 0;
-        while (count0 != 0){
-            nums[i] = 0;
-            i++;
-            count0--;
-        }
-        while (count1 != 0){
-            nums[i] = 1;
-            i++;
-            count1--;
-        }
-        while (count2 != 0){
-            nums[i] = 2;
-            i++;
-            count2--;
+            if(nums[k] == 2) {
+                nums[k] = nums[j];
+                nums[j--] = 2;
+                k--;
+            }
+            k++;
         }
     }
 }
